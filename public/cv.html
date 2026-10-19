@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Avishka Pramod Pathirana — Full Stack Engineer</title>
+<!-- ⬇️ ADD THESE FAVICON LINKS -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+  <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+  <!-- ⬆️ END FAVICON LINKS -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink: #0f172a;
+    --muted: #475569;
+    --light: #94a3b8;
+    --accent: #0078D4;
+    --accent-dark: #0063b0;
+    --accent-soft: #e6f2fb;
+    --border: #e2e8f0;
+    --bg: #ffffff;
+    --bg-outer: #eef2f7;
+  }
+
+  html, body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--ink);
+    background: var(--bg-outer);
+    line-height: 1.55;
+    font-size: 10pt;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── PAGE CONTAINER ── */
+.pages {
+  padding: 8px 8px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+ .page {
+  width: 210mm;
+  min-height: 297mm;
+  background: var(--bg);
+  padding: 14mm 16mm 14mm 16mm;
+  box-shadow: 0 8px 32px rgba(15, 23, 42, 0.10);
+  border-radius: 4px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+  /* Page number */
+  .page::after {
+    content: attr(data-page);
+    position: absolute;
+    bottom: 6mm;
+    right: 16mm;
+    font-size: 8pt;
+    color: var(--light);
+    letter-spacing: 0.5px;
+  }
+
+  /* ── HEADER ── */
+  header {
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .name {
+    font-size: 20pt;
+    font-weight: 800;
+    letter-spacing: -0.6px;
+    color: var(--ink);
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+
+  .role {
+    font-size: 12pt;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 12px;
+    letter-spacing: 0.2px;
+  }
+
+  .contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    font-size: 9pt;
+    color: var(--muted);
+    align-items: center;
+  }
+
+  .contact a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .contact a:hover { color: var(--accent); }
+
+  .contact .dot {
+    color: var(--light);
+    font-size: 10pt;
+  }
+
+  /* ── SECTIONS ── */
+  section { margin-bottom: 18px; }
+
+  section:last-child { margin-bottom: 0; }
+
+  h2 {
+    font-size: 10pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    color: var(--accent);
+    margin-bottom: 12px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  h2::before {
+    content: '';
+    display: inline-block;
+    width: 3px;
+    height: 12px;
+    background:rgb(42, 226, 42);
+    border-radius: 2px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── SUMMARY ── */
+  .summary {
+    color: var(--muted);
+    font-size: 9.8pt;
+    line-height: 1.65;
+    text-align: justify;
+  }
+
+  /* ── SKILLS ── */
+  .skill-group {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 5px 14px;
+    font-size: 9.5pt;
+  }
+
+  .skill-group dt {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .skill-group dd {
+    color: var(--muted);
+  }
+
+  /* ── EXPERIENCE / PROJECTS ── */
+  .entry {
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px dashed var(--border);
+  }
+
+  .entry:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .entry-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 2px;
+  }
+
+  .entry-title {
+    font-size: 10.5pt;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .entry-period {
+    font-size: 8.5pt;
+    color: var(--light);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .entry-sub {
+    font-size: 9.5pt;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+
+  .entry-tech {
+    font-size: 8.5pt;
+    color: var(--muted);
+    margin-bottom: 4px;
+    font-style: italic;
+  }
+
+  .entry-links {
+    font-size: 8.5pt;
+    margin-bottom: 6px;
+  }
+
+  .entry-links a {
+    color: var(--accent);
+    text-decoration: none;
+    margin-right: 14px;
+    font-weight: 500;
+    border-bottom: 1px dotted var(--accent);
+  }
+
+  .entry-links a:hover { border-bottom-style: solid; }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  ul li {
+    position: relative;
+    padding-left: 14px;
+    font-size: 9.3pt;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-bottom: 3px;
+  }
+
+  ul li::before {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 7px;
+    width: 4px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  /* ── EDUCATION ── */
+  .edu-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed var(--border);
+  }
+
+  .edu-entry:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  .edu-degree {
+    font-size: 10pt;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 1px;
+  }
+
+  .edu-inst {
+    font-size: 9.3pt;
+    color: var(--muted);
+  }
+
+  .edu-meta {
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .edu-period {
+    font-size: 8.5pt;
+    color: var(--light);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .edu-grade {
+    font-size: 8.5pt;
+    color: var(--accent);
+    font-weight: 700;
+    margin-top: 2px;
+  }
+
+  /* ── LISTS (certs, languages) ── */
+  .inline-list li {
+    font-size: 9.3pt;
+    padding-left: 0;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .inline-list li::before { display: none; }
+
+  .badge {
+    display: inline-block;
+    font-size: 7.5pt;
+    padding: 1.5px 6px;
+    border-radius: 4px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 600;
+    margin-left: 6px;
+    vertical-align: middle;
+    letter-spacing: 0.2px;
+  }
+
+  .badge-progress {
+    background: #fef3c7;
+    color: #b45309;
+  }
+
+  /* ── DOWNLOAD BAR ── */
+  .download-bar {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    gap: 8px;
+    z-index: 100;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 9.5pt;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+    text-decoration: none;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+    box-shadow: 0 6px 20px rgba(0, 120, 212, 0.35);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(0, 120, 212, 0.45);
+  }
+
+  .btn-primary:disabled {
+    opacity: 0.7;
+    cursor: wait;
+    transform: none;
+  }
+
+  .btn-secondary {
+    background: white;
+    color: var(--ink);
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .spinner {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* ── PRINT STYLES ── */
+  @media print {
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    html, body {
+      background: #fff;
+    }
+
+    .pages {
+      padding: 0;
+      gap: 0;
+    }
+
+    .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0;
+    padding: 14mm 16mm 14mm 16mm;
+    box-shadow: none;
+    border-radius: 0;
+    page-break-after: always;
+    }
+
+    .page:last-child {
+      page-break-after: auto;
+    }
+    
+
+    .no-print { display: none !important; }
+
+    a { color: var(--muted) !important; }
+
+    section { page-break-inside: avoid; }
+
+    .entry { page-break-inside: avoid; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 860px) {
+  .page {
+    width: 100%;
+    min-height: auto;
+    padding: 14mm 16mm 14mm 16mm;
+  }
+
+    .download-bar {
+      position: static;
+      justify-content: center;
+      margin: 16px auto 0;
+    }
+
+    .name { font-size: 20pt; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Download bar -->
+<div class="download-bar no-print">
+  <!-- <button id="downloadBtn" class="btn btn-primary">
+    ⬇ Download PDF
+  </button> -->
+  <button onclick="window.print()" class="btn btn-primary">
+    🖨 Print
+  </button>
+</div>
+
+<!-- PDF wrapper (whole CV) -->
+<div id="cv" class="pages">
+
+  <!-- ═══════════════ PAGE 1 ═══════════════ -->
+  <div class="page" data-page="1 / 2">
+
+    <header>
+      <h1 class="name">Jayalath Pathiranage Avishka Pramod Pathirana</h1>
+      <p class="role">Full Stack Engineer</p>
+      <div class="contact">
+        
+        <span>🎂 2001</span>
+        <a href="mailto:avishpramod1031@gmail.com">✉ avishpramod1031@gmail.com</a>
+        
+        <a href="https://wa.me/94764952090" target="_blank">☎ +94 76 495 2090</a>
+        
+        <span>📍 Bumunugama, Welpalla, Sri Lanka</span>
+    
+        <a href="https://github.com/AvishkaPramod" target="_blank"> 💻 github.com/AvishkaPramod</a>
+      
+        <a href="https://www.linkedin.com/in/avishka-pramod" target="_blank"> 🔗 linkedin.com/in/avishka-pramod</a>
+      </div>
+    </header>
+
+    <!-- SUMMARY -->
+    <section>
+      <h2>Summary</h2>
+      <p class="summary">
+        Full Stack Engineer currently at SYNCONIC (Pvt) Ltd, with 1+ year of professional experience
+        building scalable web applications across the full SDLC. Skilled in Next.js, Angular, C#, and
+        .NET Core, with hands-on cloud deployment on Microsoft Azure and Azure DevOps. Strong foundation
+        in database design (PostgreSQL, MS SQL, MySQL) and RESTful API architecture. Passionate about
+        clean architecture, problem-solving, and continuous learning.
+      </p>
+    </section>
+
+    <!-- SKILLS -->
+    <section>
+      <h2>Technical Skills</h2>
+      <dl class="skill-group">
+        <dt>Frontend</dt>
+        <dd>Next.js, React, Angular, Tailwind CSS, HTML5, CSS3, JavaScript</dd>
+
+        <dt>Backend</dt>
+        <dd>C#, .NET Core, ASP.NET Core MVC, RESTful APIs, Node.js</dd>
+
+        <dt>Databases</dt>
+        <dd>PostgreSQL, MS SQL Server, MySQL, Supabase, Entity Framework</dd>
+
+        <dt>Cloud &amp; DevOps</dt>
+        <dd>Microsoft Azure,Azure DevOps, GitHub Actions, CI/CD, Vercel, Netlyfy</dd>
+
+        <dt>Tools</dt>
+        <dd>Git, Visual Studio, VS Code, Postman, Swagger, Figma</dd>
+      </dl>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section>
+      <h2>Experience</h2>
+
+      <div class="entry">
+        <div class="entry-head">
+          <div class="entry-title">Software Developer</div>
+          <div class="entry-period">Sep 2025 – Present</div>
+        </div>
+        <div class="entry-sub">SYNCONIC (Pvt) Ltd · Colombo, Sri Lanka</div>
+        <ul>
+          <li>Build and maintain core software products, internal platforms, and client solutions across the full development lifecycle.</li>
+          <li>Architect RESTful APIs using .NET Core, and design database schemas in PostgreSQL, Supabase, and MS SQL Server.</li>
+          <li>Deploy cloud-based solutions on Microsoft Azure, using Azure DevOps for CI/CD pipelines.</li>
+          <li>Collaborate with cross-functional teams in an agile environment, following modern engineering practices.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <div class="entry-title">Software Engineer Intern</div>
+          <div class="entry-period">Oct 2024 – Mar 2025</div>
+        </div>
+        <div class="entry-sub">SYNCONIC (Pvt) Ltd · Colombo, Sri Lanka</div>
+        <ul>
+          <li>Contributed to .NET and C# application development, including feature enhancements and debugging.</li>
+          <li>Gained hands-on experience with Microsoft Azure, deploying cloud-based solutions.</li>
+          <li>Worked closely with senior developers on code reviews and engineering best practices.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PROJECTS (partial — ROCHEE only on page 1) -->
+    <section>
+      <h2>Projects</h2>
+
+      <div class="entry">
+        <div class="entry-head">
+          <div class="entry-title">ROCHEE Fashion</div>
+        </div>
+        <div class="entry-tech">Next.js · Tailwind CSS · Framer Motion · Vercel</div>
+        <div class="entry-links"><a href="https://rochee-fashion.vercel.app" target="_blank">rochee-fashion.vercel.app</a></div>
+        <ul>
+          <li>Premium luxury fashion brand website with custom multi-font design system and full SEO metadata.</li>
+          <li>Implemented scroll progress, parallax animations, Instagram gallery, and newsletter integration.</li>
+        </ul>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ═══════════════ PAGE 2 ═══════════════ -->
+  <div class="page" data-page="2 / 2">
+
+    <!-- PROJECTS (continued) -->
+    <section>
+      <h2>Projects (continued)</h2>
+
+      <div class="entry">
+        <div class="entry-head">
+          <div class="entry-title">AKNursingCare</div>
+        </div>
+        <div class="entry-tech">ASP.NET Core MVC · C# · MySQL · EF Core · Azure</div>
+        <div class="entry-links"><a href="https://aknursingcare.azurewebsites.net" target="_blank">aknursingcare.azurewebsites.net</a></div>
+        <ul>
+          <li>Nursing care platform with admin/user roles, built on clean architecture (business, contracts, entities, shared).</li>
+          <li>Implemented BCrypt authentication, MailKit email service, and CI/CD via GitHub Actions.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <div class="entry-title">Kingdom of English</div>
+        </div>
+        <div class="entry-tech">Next.js · Tailwind CSS · Vercel</div>
+        <div class="entry-links"><a href="https://kingdom-of-english.vercel.app" target="_blank">kingdom-of-english.vercel.app</a></div>
+        <ul>
+          <li>Language institute website (IELTS, PTE, German Visa) with custom royal/gold theme.</li>
+          <li>Built mobile-first responsive layout with section-based architecture.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <div class="entry-title">EarnPilot</div>
+        </div>
+        <div class="entry-tech">HTML5 · Modular CSS · JavaScript · Netlify</div>
+        <div class="entry-links"><a href="https://earnpilotv1.netlify.app" target="_blank">earnpilotv1.netlify.app</a></div>
+        <ul>
+          <li>Online earning education platform built with component-based HTML and CSS variable design system.</li>
+          <li>Multi-page structure deployed via Netlify.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section>
+      <h2>Education</h2>
+
+      <div class="edu-entry">
+        <div>
+          <div class="edu-degree">BEng (Hons) Software Engineering</div>
+          <div class="edu-inst">London Metropolitan Campus</div>
+        </div>
+        <div class="edu-meta">
+          <div class="edu-period">2024 – 2025</div>
+          <div class="edu-grade">Second Upper Class</div>
+        </div>
+      </div>
+
+      <div class="edu-entry">
+        <div>
+          <div class="edu-degree">HND in Software Engineering</div>
+          <div class="edu-inst">Pearson UK</div>
+        </div>
+        <div class="edu-meta">
+          <div class="edu-period">2022 – 2024</div>
+          <div class="edu-grade">Distinction</div>
+        </div>
+      </div>
+
+      <div class="edu-entry">
+        <div>
+          <div class="edu-degree">Diploma in Information Technology</div>
+          <div class="edu-inst">Pearson UK</div>
+        </div>
+        <div class="edu-meta">
+          <div class="edu-period">2022 – 2023</div>
+          <div class="edu-grade">Merit</div>
+        </div>
+      </div>
+
+      <div class="edu-entry">
+        <div>
+          <div class="edu-degree">G.C.E. A/L — Maths Stream</div>
+          <div class="edu-inst">Harishchandra National College</div>
+        </div>
+        <div class="edu-meta">
+          <div class="edu-period">2018 – 2021</div>
+        </div>
+      </div>
+
+      <div class="edu-entry">
+        <div>
+          <div class="edu-degree">G.C.E. O/L</div>
+          <div class="edu-inst">Harishchandra National College</div>
+        </div>
+        <div class="edu-meta">
+          <div class="edu-period">2017</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section>
+      <h2>Certifications</h2>
+      <ul class="inline-list">
+        <li><strong>Real Estate Practitioner</strong> — Pro Realtor Academy</li>
+        <li>PostgreSQL Database Administration (DBA) Masterclass — Udemy <span class="badge badge-progress">In Progress</span></li>
+        <li>SEO Course — Udemy <span class="badge badge-progress">In Progress</span></li>
+      </ul>
+    </section>
+
+    <!-- LANGUAGES -->
+    <section>
+      <h2>Languages</h2>
+      <ul class="inline-list">
+        <li><strong>English</strong> — Professional</li>
+        <li><strong>Sinhala</strong> — Native</li>
+      </ul>
+    </section>
+        <!-- REFERENCES -->
+    <section>
+      <h2>References</h2>
+      <div class="edu-entry" style="border-bottom: none; padding-bottom: 0;">
+        <div>
+          <div class="edu-degree">Nadheera Senasinghe</div>
+          <div class="edu-inst">
+            BEng AE (Kingston Lon), PgD IS (SLIIT), CC & SSCP (ISC2), NIST CSF, PMC (Google)<br/>
+            Co-Founder, Red Threat Cyber Security
+          </div>
+          <div class="entry-links" style="margin-top: 6px; margin-bottom: 0;">
+            <a href="mailto:nadheera@redthreatcs.com">✉ nadheera@redthreatcs.com</a>
+            <a href="tel:0776713737">☎ 077-6713737</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</div>
+
+<script>
+  const btn = document.getElementById('downloadBtn');
+
+  btn.addEventListener('click', async () => {
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<span class="spinner"></span> Generating...';
+    btn.disabled = true;
+
+    try {
+      const element = document.getElementById('cv');
+
+      await html2pdf()
+        .set({
+          margin: 0,
+          filename: 'Avishka_Pramod_Pathirana_CV.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: {
+            scale: 3,
+            useCORS: true,
+            letterRendering: true,
+            backgroundColor: '#ffffff',
+          },
+          jsPDF: {
+            unit: 'mm',
+            format: 'a4',
+            orientation: 'portrait',
+          },
+          pagebreak: {
+            mode: ['css', 'legacy'],
+            before: '.page + .page',
+            avoid: ['section', '.entry'],
+          },
+        })
+        .from(element)
+        .save();
+    } catch (err) {
+      console.error('PDF generation failed:', err);
+      alert('PDF download failed. Please use the Print button and choose "Save as PDF".');
+    } finally {
+      btn.innerHTML = originalText;
+      btn.disabled = false;
+    }
+  });
+</script>
+
+</body>
+</html>

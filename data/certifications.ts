@@ -1,0 +1,42 @@
+export const certifications = [
+  {
+    title: "Real Estate Practitioner",
+    issuer: "Pro Realtor Academy",
+    date: "",
+    file: "/certificates/realestate.png",
+    verifyUrl: "",
+    status: "completed" as const,
+  },
+  {
+    title: "PostgreSQL Database Administration (DBA) Masterclass",
+    issuer: "Udemy",
+    date: "",
+    file: "",
+    verifyUrl: "",
+    status: "in-progress" as const,
+  },
+  {
+    title: "Microsoft Azure DevOps",
+    issuer: "Udemy",
+    date: "",
+    file: "",
+    verifyUrl: "",
+    status: "in-progress" as const,
+  },
+  {
+    title: "Microsoft Azure Administrator",
+    issuer: "Udemy",
+    date: "",
+    file: "",
+    verifyUrl: "",
+    status: "in-progress"as const,
+  },
+  {
+    title: "SEO Course",
+    issuer: "Udemy",
+    date: "",
+    file: "",
+    verifyUrl: "",
+    status: "in-progress"as const,
+  },
+];
